@@ -115,3 +115,11 @@ set background=dark
 colorscheme abra
 "ctrl-p install stuff
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+"turn off ctrlp from setting it's pwd 
+let g:ctrlp_working_path_mode = 0
+"set shortcut for nerd tree
+nmap <leader>ne :NERDTree<cr>
+map <silent> <C-n> :NERDTreeFocus<CR>
+map <silent> <C-n> :NERDTreeToggle<CR>
+
+
