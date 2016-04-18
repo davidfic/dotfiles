@@ -13,28 +13,29 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'rosenfield/conque-term'
-" the newest version of bufexplorer breaks switching buffers
-" using a fork so we can have the old version
-"Bundle 'jlanzarotta/bufexplorer'
-Plugin 'crookedneighbor/bufexplorer'
 Plugin 'tpope/vim-fugitive'
-Plugin 'bling/vim-airline'
+Plugin 'crookedneighbor/bufexplorer'
+Plugin 'itchyny/lightline.vim'
+"Plugin 'bling/vim-airline'
 Plugin 'ctrlp.vim'
 Plugin 'bling/vim-bufferline'
-"Plugin 'jeetsukumaran/vim-buffergator'
-
-
-
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'easymotion/vim-easymotion'
+"Plugin 'ryanoasis/vim-devicons'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
 set guifont=Menlo\ Regular:h18
 " Setting basic variables {{{
-set tabstop=4
+set softtabstop=2
+set smarttab
+set tabstop=2
+set shiftwidth=2
 set expandtab
-set shiftwidth=4
 set relativenumber
+set number
 set laststatus=2
 set incsearch
 " Automatically cd into the directory that the file is in
@@ -46,6 +47,7 @@ set smartcase
 set ttyfast
 set hlsearch
 set nobackup
+set encoding=utf8
 set fileformats=unix,dos,mac    " support all three newline formats
 set viminfo=                    " don't use or save viminfo files
 set noerrorbells
@@ -73,6 +75,7 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 nnoremap <leader><space> :nohlsearch<CR>
 " }}}
 
+" function for color status line {{{
 
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
@@ -83,8 +86,24 @@ function! InsertStatuslineColor(mode)
     hi statusline guibg=DarkRed ctermfg=1 guifg=Black ctermbg=0
   endif
 endfunction
+"}}}
 
-
+" configuration for easy motion {{{
+" <Leader>f{char} to move to {char}
+ map  <Leader>f <Plug>(easymotion-bd-f)
+ nmap <Leader>f <Plug>(easymotion-overwin-f)
+"
+" " s{char}{char} to move to {char}{char}
+ nmap s <Plug>(easymotion-overwin-f2)
+"
+" " Move to line
+ map <Leader>L <Plug>(easymotion-bd-jk)
+ nmap <Leader>L <Plug>(easymotion-overwin-line)
+"
+" " Move to word
+ map  <Leader>w <Plug>(easymotion-bd-w)
+ nmap <Leader>w <Plug>(easymotion-overwin-w)
+" }}}
 
 au InsertEnter * call InsertStatuslineColor(v:insertmode)
 au InsertLeave * hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
@@ -95,6 +114,9 @@ hi statusline guibg=DarkGrey ctermfg=8 guifg=White ctermbg=15
 
 " setting our variables for statuslines {{{
 " Formatts the statusline
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 set statusline=%f                           " file name
 set statusline+=[%{strlen(&fenc)?&fenc:'none'}, "file encoding
 set statusline+=%{&ff}] "file format
@@ -113,7 +135,12 @@ set modelines=1
 " }}}
 hi CursorLine term=none cterm=none ctermbg=3
 
-
+" settings for syntastic {{{
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" }}}
 
 function! InsertStatuslineColor(mode)
   if a:mode == 'i'
@@ -126,4 +153,56 @@ function! InsertStatuslineColor(mode)
 endfunction
 
 " vim:foldmethod=marker:foldlevel=0
+" configuration for linghtline {{{
+let g:lightline = {
+      \ 'colorscheme': 'powerline',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'fugitive','readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'fugitive': 'LightLineFugitive',
+      \   'readonly': 'LightLineReadonly',
+      \   'modified': 'LightLineModified',
+      \   'filename': 'LightLineFilename'
+      \ },
+      \ 'separator': { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' }
+      \ }
 
+			function! LightLineModified()
+				if &filetype == "help"
+					return ""
+				elseif &modified
+					return "+"
+				elseif &modifiable
+					return ""
+				else
+					return ""
+				endif
+			endfunction
+
+			function! LightLineReadonly()
+				if &filetype == "help"
+					return ""
+				elseif &readonly
+					return "⭤"
+				else
+					return ""
+				endif
+			endfunction
+
+			function! LightLineFugitive()
+				if exists("*fugitive#head")
+					let _ = fugitive#head()
+					return strlen(_) ? '⭠ '._ : ''
+				endif
+				return ''
+			endfunction
+
+      function! LightLineFilename()
+          return ('' != LightLineReadonly() ? LightLineReadonly() . ' ' : '') .
+                 \ ('' != expand('%:t') ? expand('%:t') : '[No Name]') .
+                 \ ('' != LightLineModified() ? ' ' . LightLineModified() : '')
+        endfunction
+" }}}

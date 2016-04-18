@@ -1,13 +1,13 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/dficociello/.oh-my-zsh
+export ZSH=/Users/david/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
-ZSH_THEME="xxf"
+ZSH_THEME="agnoster"
+#ZSH_THEME="xxf"
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -61,10 +61,9 @@ export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 source $ZSH/oh-my-zsh.sh
 export WORKON_HOME=$HOME/.virtualenvs 
+#
+#fix the wrapper line. it won't currently install
 source /usr/local/bin/virtualenvwrapper.sh
-NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-export PATH=$PATH:$NVM_PATH
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -89,10 +88,13 @@ export PATH=$PATH:$NVM_PATH
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias devbastion="ssh -A ubuntu@52.36.229.149"
+alias lst='ls -latr'
 function start_db() {         
     cd ~/Servers/dynamodb;         
     java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -port 4567 -sharedDb; 
 }
 
-
+#Docker
+eval "$(docker-machine env default)"
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
