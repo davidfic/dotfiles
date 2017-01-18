@@ -21,7 +21,6 @@ Plugin 'ctrlp.vim'
 Plugin 'bling/vim-bufferline'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
 Plugin 'easymotion/vim-easymotion'
 "Plugin 'ryanoasis/vim-devicons'
 call vundle#end()            " required
@@ -52,14 +51,20 @@ set fileformats=unix,dos,mac    " support all three newline formats
 set viminfo=                    " don't use or save viminfo files
 set noerrorbells
 set wildmenu
+set path+=**
+" tell it to use an undo file
+set undofile
+" " set a directory to store the undo history
+set undodir=/Users/davidfic/.vimundo/
 let mapleader=','
-syntax on
+syntax enable
 " set width of NERDTree side bar
 let g:NERDTreeWinSize = 40
 let g:airline_powerline_fonts = 1
 "set colorscheme
 "colorscheme solarized
-colorscheme brown
+"colorscheme brown
+colorscheme base16-railscasts
 "colorscheme sunny-day
 "ctrl-p install stuff
 set background=dark
@@ -74,7 +79,21 @@ map <silent> <C-n> :NERDTreeToggle<CR>
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
 " }}}
-
+" higlights for railscast scheme
+highlight clear SignColumn
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236 ctermfg=240
+highlight CursorLineNr ctermbg=236 ctermfg=240
+highlight CursorLine   ctermbg=236
+highlight StatusLineNC ctermbg=238 ctermfg=0
+highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=3   ctermfg=1
+highlight Search       ctermbg=1   ctermfg=3
+highlight Visual       ctermbg=3   ctermfg=0
+highlight Pmenu        ctermbg=240 ctermfg=12
+highlight PmenuSel     ctermbg=3   ctermfg=1
+highlight SpellBad     ctermbg=0   ctermfg=1
 " function for color status line {{{
 
 function! InsertStatuslineColor(mode)
