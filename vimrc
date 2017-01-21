@@ -69,6 +69,8 @@ colorscheme base16-railscasts
 "ctrl-p install stuff
 set background=dark
 set runtimepath^=~/.vim/bundle/ctrlp.vim
+" set F2 to be the same as doing :set paste
+set pastetoggle=<F2>
 "turn off ctrlp from setting it's pwd 
 let g:ctrlp_working_path_mode = 0
 "set shortcut for nerd tree
