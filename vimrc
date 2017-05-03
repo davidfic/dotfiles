@@ -3,6 +3,7 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
+set rtp+=/usr/local/opt/fzf
 call vundle#begin()
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -22,6 +23,8 @@ Plugin 'bling/vim-bufferline'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'easymotion/vim-easymotion'
+Plugin 'NewProggie/NewProggie-Color-Scheme'
+Plugin 'junegunn/fzf'
 "Plugin 'ryanoasis/vim-devicons'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -63,9 +66,9 @@ let g:NERDTreeWinSize = 40
 let g:airline_powerline_fonts = 1
 "set colorscheme
 "colorscheme solarized
+colorscheme newproggie
 "colorscheme brown
-colorscheme base16-railscasts
-"colorscheme sunny-day
+"colorscheme base16-railscasts
 "ctrl-p install stuff
 set background=dark
 set runtimepath^=~/.vim/bundle/ctrlp.vim
@@ -77,6 +80,10 @@ let g:ctrlp_working_path_mode = 0
 nmap <leader>ne :NERDTree<cr>
 map <silent> <C-n> :NERDTreeFocus<CR>
 map <silent> <C-n> :NERDTreeToggle<CR>
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
 "nmap ; :<CR>
 " turn off search highlight
 nnoremap <leader><space> :nohlsearch<CR>
@@ -317,3 +324,12 @@ let g:lightline = {
 
 
 " }}}
+
+
+
+" Relative or absolute number lines
+function! NumberToggle()
+	exe 'set nu!' &nu ? 'rnu!' : ''
+endfunction
+nnoremap <CR> :call NumberToggle()<CR>
+"let [&nu, &rnu] = [!&rnu, &nu+&rnu==1]

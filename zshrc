@@ -1,6 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/david/.oh-my-zsh
-
+export ZSH=/Users/dficociello/.oh-my-zsh
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -52,7 +51,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git,history,history-substring-serarch,python,virtualenv,virtualenvwrapper,brew,osx,themes)
+plugins=(git,history,history-substring-serarch,python,virtualenv,virtualenvwrapper,brew,osx,themes,vi-mode)
 
 # User configuration
 
@@ -64,6 +63,8 @@ export WORKON_HOME=$HOME/.virtualenvs
 #
 #fix the wrapper line. it won't currently install
 source /usr/local/bin/virtualenvwrapper.sh
+source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
+export PATH=$PATH:~/Library/Python/2.7/bin:/usr/local/go/bin/
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -88,13 +89,5 @@ source /usr/local/bin/virtualenvwrapper.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias devbastion="ssh -A ubuntu@52.36.229.149"
 alias lst='ls -latr'
-function start_db() {         
-    cd ~/Servers/dynamodb;         
-    java -Djava.library.path=./DynamoDBLocal_lib -jar DynamoDBLocal.jar -port 4567 -sharedDb; 
-}
 
-#Docker
-eval "$(docker-machine env default)"
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
