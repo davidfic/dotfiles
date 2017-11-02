@@ -14,7 +14,7 @@ Plugin 'scrooloose/nerdtree.git'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'tomasr/molokai'
 Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-fugitive'
 Plugin 'crookedneighbor/bufexplorer'
 Plugin 'itchyny/lightline.vim'
 "Plugin 'bling/vim-airline'
@@ -25,6 +25,7 @@ Plugin 'scrooloose/syntastic'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'NewProggie/NewProggie-Color-Scheme'
 Plugin 'junegunn/fzf'
+Plugin 'hashivim/vim-terraform'
 "Plugin 'ryanoasis/vim-devicons'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -66,9 +67,16 @@ let g:NERDTreeWinSize = 40
 let g:airline_powerline_fonts = 1
 "set colorscheme
 "colorscheme solarized
-colorscheme newproggie
+"highlight clear SignColumn
+"highlight clear SignColumn
+"highlight GitGutterAdd ctermfg=green
+"highlight GitGutterChange ctermfg=yellow
+"highlight GitGutterDelete ctermfg=red
+"highlight GitGutterChangeDelete ctermfg=yellow
+
+"colorscheme newproggie
 "colorscheme brown
-"colorscheme base16-railscasts
+colorscheme base16-railscasts
 "ctrl-p install stuff
 set background=dark
 set runtimepath^=~/.vim/bundle/ctrlp.vim
