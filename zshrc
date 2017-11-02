@@ -64,7 +64,7 @@ export WORKON_HOME=$HOME/.virtualenvs
 #fix the wrapper line. it won't currently install
 source /usr/local/bin/virtualenvwrapper.sh
 source ~/.oh-my-zsh/plugins/git/git.plugin.zsh
-export PATH=$PATH:~/Library/Python/2.7/bin:/usr/local/go/bin/
+export PATH=$PATH:~/Library/Python/3.7/bin:/usr/local/go/bin/:~/bin/google-cloud-sdk/bin
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -90,4 +90,8 @@ export PATH=$PATH:~/Library/Python/2.7/bin:/usr/local/go/bin/
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lst='ls -latr'
-
+source /usr/local/bin/virtualenvwrapper.sh
+export WORKON_HOME=$HOME/.virtualenvs
+#alias python='python3'
+alias tf=terraform
+alias tfp='terraform plan'
