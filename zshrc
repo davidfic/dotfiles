@@ -1,12 +1,16 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/dficociello/.oh-my-zsh
+export TERM="xterm-256color"
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 # ZSH_THEME="robbyrussell"
-ZSH_THEME="agnoster"
-#ZSH_THEME="xxf"
+ZSH_THEME="powerlevel9k/powerlevel9k"
+
+#ZSH_THEME="agnoster"
+#ZSH_THEME="bira"
+#ZSH_THEME="powerlevel9k"
 
 
 # Uncomment the following line to use case-sensitive completion.
@@ -51,7 +55,7 @@ ZSH_THEME="agnoster"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git,history,history-substring-serarch,python,virtualenv,virtualenvwrapper,brew,osx,themes,vi-mode)
+plugins=(git,history,history-substring-serarch,kubectl,kube-ps1,python,virtualenv,virtualenvwrapper,brew,osx,themes,vi-mode)
 
 # User configuration
 
@@ -90,8 +94,12 @@ export PATH=$PATH:~/Library/Python/3.7/bin:/usr/local/go/bin/:~/bin/google-cloud
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias lst='ls -latr'
+source ~/dev/kube-ps1/kube-ps1.sh
+#PROMPT='$(kube_ps1) '
 source /usr/local/bin/virtualenvwrapper.sh
 export WORKON_HOME=$HOME/.virtualenvs
+export PATH=$PATH:~/bin
 #alias python='python3'
-alias tf=terraform
+alias tf='terraform'
 alias tfp='terraform plan'
+alias tfi='terraform init'

@@ -26,6 +26,8 @@ Plugin 'easymotion/vim-easymotion'
 Plugin 'NewProggie/NewProggie-Color-Scheme'
 Plugin 'junegunn/fzf'
 Plugin 'hashivim/vim-terraform'
+Plugin 'ryanoasis/vim-devicons'
+Plugin 'ayu-theme/ayu-vim'
 "Plugin 'ryanoasis/vim-devicons'
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -73,10 +75,15 @@ let g:airline_powerline_fonts = 1
 "highlight GitGutterChange ctermfg=yellow
 "highlight GitGutterDelete ctermfg=red
 "highlight GitGutterChangeDelete ctermfg=yellow
-
 "colorscheme newproggie
+"colorscheme gruvbox
+set termguicolors     " enable true colors support
+let ayucolor="light"  " for light version of theme
+let ayucolor="mirage" " for mirage version of theme
+let ayucolor="dark"   " for dark version of theme
+colorscheme ayu
 "colorscheme brown
-colorscheme base16-railscasts
+"colorscheme base16-railscasts
 "ctrl-p install stuff
 set background=dark
 set runtimepath^=~/.vim/bundle/ctrlp.vim
